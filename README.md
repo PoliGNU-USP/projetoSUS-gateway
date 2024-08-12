@@ -17,15 +17,15 @@ na NGROK e na TWILIO
 
 ## Adicione em um arquivo *.env* as seguintes informações
 
--- Seu secure ID da Twilio. --
+-- Seu secure ID da Twilio. --  
 **TWILIO_ACCOUNT_SID=XXXXXX**
 
--- Seu Token de Autorização da Twilio --
+-- Seu Token de Autorização da Twilio --  
 **TWILIO_AUTH_TOKEN=XXXXXX**
 
--- O LocalHost que você quer colocar (geralmente :8080) --
+-- O LocalHost que você quer colocar (geralmente :8080) --  
 -- Essa porta também deve ser a mesma da porta que você precisará colocar no ngrok (para expor a sua porta local na internet)--
 **DEV_LOCALHOST=XXXXXX**
 
--- Definindo o BOTKIT Webhook (geralmente <http://localhost:3000/api/messages)-->
+-- Definindo o BOTKIT Webhook (geralmente <http://localhost:3000/api/messages)-->  
 **BOTKIT_WEBHOOK=XXXXXX**
