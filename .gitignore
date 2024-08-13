@@ -24,3 +24,5 @@ go.work.sum
 # env file
 .env
 tmp
+github_key.pub
+github_key
