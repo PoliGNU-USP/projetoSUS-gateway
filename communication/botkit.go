@@ -71,7 +71,7 @@ func SendToBotKit(msg Message) ([]string, error) {
 	log.Printf("Raw responde from BotKit: %s", string(body_bytes))
 
 	if string(body_bytes) == "" {
-		reply = append(reply, "Estamos esperando uma mensagem do BotKit!") // isso com certeza vai mudar
+		reply = append(reply, "Estamos esperando uma mensagem do BotKit! (Ainda não há uma resposta no fluxo para isso)") // isso com certeza vai mudar
 	} else {
 		err = json.Unmarshal(body_bytes, &BotkitPayload)
 		if err != nil {
