@@ -15,6 +15,13 @@ Para rodar o gateway você precisa ter o Go 1.22+ instalado em sua máquina.
 Para rodar os testes (ambiente de desenvolvimento) você precisará de uma conta
 na NGROK e na TWILIO
 
+Na sua conta twilio, vá na aba de enviar uma mensagem de teste (algo como "try it out") e adicione seu número de celular no sandbox deles.
+
+Gere o link do ngrok na mesma porta do DEV_LOCALHOST.
+se for 8080 será -> ngrok http 8080
+
+Depois, coloque o link do ngrok endpoint do sandbox.
+
 ## Adicione em um arquivo *.env* as seguintes informações
 
 -- Seu secure ID da Twilio. --  
