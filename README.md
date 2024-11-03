@@ -36,3 +36,14 @@ Depois, coloque o link do ngrok endpoint do sandbox.
 
 -- Definindo o BOTKIT Webhook (geralmente <http://localhost:3000/api/messages)-->  
 **BOTKIT_WEBHOOK=XXXXXX**
+
+-- Para definir o banco de dados, adicione essas informações no seu .env
+
+**DB_DRIVER=postgres  
+DB_HOST=localhost  
+DB_PORT=5432  
+DB_USER=[ youruser ]  
+DB_PASSWORD=[ yourpassword ]  
+DB_NAME=[ yourdb ]**  
+
+**Você pode criar um user e DB para os teste ou pode usar as infos de admin postgres, a escolha é sua**

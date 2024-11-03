@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/PoliGNU-USP/projetoSUS-gateway/database"
 	"github.com/PoliGNU-USP/projetoSUS-gateway/routes"
 	"github.com/joho/godotenv"
 	"log"
@@ -15,10 +16,23 @@ func main() {
 
 	logger.Info("Inicializando o Gateway")
 
-	logger.Info("Pegando variáveis de ambiente")
+	logger.Info("Carregando variáveis de ambiente")
 	err := godotenv.Load(".env")
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal("Erro pegando as variáveis de ambiente", err)
+	}
+
+	// Conectando com o banco de dados
+	db, err := database.ConnectDatabase()
+	if err != nil {
+		log.Fatal("Erro conectando com o banco de dados", err)
+	}
+	logger.Info("Banco de dados conectado com sucesso!")
+
+	// Criando ou conectando a tabela dos usuarios
+	err = db.AutoMigrate(&database.User{})
+	if err != nil {
+		log.Fatal("Erro ao criar tabela dos usuários", err)
 	}
 
 	// Criando o router mux para gerenciar os paths http
@@ -26,7 +40,7 @@ func main() {
 
 	// Dizendo o que acontece quando o nosso router recebe uma requisicao post no endereco padrao
 	// no caso, vamos mandar pra essa funcao ReceiveReply
-	router.HandleFunc("POST /", routes.ReceiveReply) // aqui que a mágica acontece
+	router.HandleFunc("POST /", routes.ReceiveReply(db, logger)) // aqui que a mágica acontece
 
 	// Iniciando o servidor
 	server := http.Server{
