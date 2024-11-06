@@ -34,8 +34,14 @@ Depois, coloque o link do ngrok endpoint do sandbox.
 -- Essa porta também deve ser a mesma da porta que você precisará colocar no ngrok (para expor a sua porta local na internet)--
 **DEV_LOCALHOST=XXXXXX**
 
--- Definindo o BOTKIT Webhook (geralmente <http://localhost:3000/api/messages)-->  
+-- Definindo o BOTKIT Webhook (geralmente <http://localhost:3000/api/messages>) --
 **BOTKIT_WEBHOOK=XXXXXX**
+
+-- Se for utilizar o Docker Compose utilize:
+**BOTKIT_WEBHOOK=http://fluxo:3000/api/messages**
+
+-- Seu Token de Autorização do Ngrok --  
+**NGROK_AUTHTOKEN=XXXXXX**
 
 -- Para definir o banco de dados, adicione essas informações no seu .env
 

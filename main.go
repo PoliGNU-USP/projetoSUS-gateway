@@ -1,13 +1,14 @@
 package main
 
 import (
-	"github.com/PoliGNU-USP/projetoSUS-gateway/database"
-	"github.com/PoliGNU-USP/projetoSUS-gateway/routes"
-	"github.com/joho/godotenv"
 	"log"
 	"log/slog"
 	"net/http"
 	"os"
+
+	"github.com/PoliGNU-USP/projetoSUS-gateway/database"
+	"github.com/PoliGNU-USP/projetoSUS-gateway/routes"
+	"github.com/joho/godotenv"
 )
 
 func main() {
