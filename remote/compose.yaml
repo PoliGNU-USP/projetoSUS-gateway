@@ -23,6 +23,8 @@ services:
       - gateway
     ports:
       - "4040:4040"
+    env_file:
+      - path: ../.env
     command:
       - "http"
       - "gateway:8080"
