@@ -31,7 +31,7 @@ na pasta base do projeto (ao lado da main.go)
 No diretório **remote** use o comando:
 
 ```shell
-docker-compose up -d -build
+docker compose up -d -build
 ```
 
 Depois, vá no seu navegador e entre em **localhost:4040** e copie o link
