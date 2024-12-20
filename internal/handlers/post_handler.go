@@ -1,10 +1,13 @@
 package handlers
 
 import (
+	"gateway/internal/models"
+	"gateway/internal/repositories"
 	"gateway/internal/services"
 	"gateway/internal/utils"
 	"log"
 	"net/http"
+	"time"
 )
 
 func HandlePost(w http.ResponseWriter, r *http.Request) {
@@ -19,7 +22,15 @@ func HandlePost(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 	}
 
-	// TODO: Salvar a mensagem do usuário no ChatHistory
+	// Transformando a mensagem da twilio em uma mensagem para a Conversation
+	user_message := models.Message{
+		Sender:    twilio_message.AccountSid,
+		Text:      twilio_message.Body,
+		Timestamp: time.Now(),
+	}
+
+	// Salvando a mensgem na conversa
+	repositories.SaveMessage(twilio_message.AccountSid, user_message)
 
 	// Enviar a mensagem pro BotKit
 	reply, err := services.SendToBotkit(*twilio_message)
@@ -29,9 +40,16 @@ func HandlePost(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	//TODO: Salvar as mensagem do bot no ChatHistory
-	//Utilizar os cookies da twilio?
-	//https://www.twilio.com/docs/messaging/twiml#cookies
+	// Para cada mensagem do bot, cria uma message e salva no banco de dados
+	for _, msg := range reply {
+		bot_message := models.Message{
+			Sender:    "BotKit",
+			Text:      msg,
+			Timestamp: time.Now(),
+		}
+
+		repositories.SaveMessage(twilio_message.AccountSid, bot_message)
+	}
 
 	if err := services.RespondToUser(w, reply); err != nil {
 		log.Printf("Erro enviando a mensagem para o usuário: %v", err)
