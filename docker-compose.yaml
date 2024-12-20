@@ -1,0 +1,26 @@
+services:
+  fluxo:
+    build:
+      context: ./dockers/fluxo/
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+
+  gateway:
+    build:
+      dockerfile: Dockerfile
+    env_file:
+        - .env
+
+  ngrok:
+    image: ngrok/ngrok
+    depends_on:
+      - fluxo
+      - gateway
+    ports:
+      - "4040:4040"
+    env_file:
+      - path: .env
+    command:
+      - "http"
+      - "gateway:8080"
