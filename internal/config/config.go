@@ -18,7 +18,7 @@ func Load() {
 	Env = &Config{
 		Port:        getEnv("PORT", "8080"),
 		PostgresDSN: getEnv("POSTGRES_DSN", "postgres://user:pass@localhost:5432/db"),
-		MongoDBURI:  getEnv("MONGO_URI", "mongodb://localhost:27017"),
+		MongoDBURI:  getEnv("MONGO_URI", "mongodb://root:example@mongo:27017/"),
 		BotkitURL:   getEnv("BOTKIT_URL", "http://fluxo:3000/api/messages"),
 		TwilioSID:   getEnv("TWILIO_SID", "XXXXXXXX"),
 	}

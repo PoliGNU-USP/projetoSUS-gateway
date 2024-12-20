@@ -3,6 +3,7 @@ package main
 import (
 	"gateway/internal/config"
 	"gateway/internal/handlers"
+	"gateway/internal/repositories"
 	"log"
 	"net/http"
 )
@@ -10,6 +11,14 @@ import (
 func main() {
 	// Carregando as configuracoes
 	config.Load()
+
+	//TODO: As conexões com outros bancos de dados devem ser feitas no começo do código
+	//Iniciando a conexão com o BD
+	mongoClient, err := repositories.InitMongoDB(config.Env.MongoDBURI, "mydatabase", "conversations")
+	if err != nil {
+		log.Fatalf("Failed to initialize MongoDB: %v", err)
+	}
+	defer mongoClient.Disconnect(nil)
 
 	// Inicializando o router
 	mux := http.NewServeMux()
