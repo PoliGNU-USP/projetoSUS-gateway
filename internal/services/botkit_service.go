@@ -11,7 +11,7 @@ import (
 
 func SendToBotkit(msg models.TwilioMessage) ([]string, error) {
 
-	url := config.Env.BotkitURL
+	url := config.Env.BOTKIT_URL
 
 	var reply []string
 

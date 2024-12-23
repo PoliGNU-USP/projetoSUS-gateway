@@ -14,7 +14,7 @@ func main() {
 
 	//TODO: As conexões com outros bancos de dados devem ser feitas no começo do código
 	//Iniciando a conexão com o BD
-	mongoClient, err := repositories.InitMongoDB(config.Env.MongoDBURI, "mydatabase", "conversations")
+	mongoClient, err := repositories.InitMongoDB(config.Env.MONGODB_URI, config.Env.MONGODB_DBNAME, config.Env.MONGODB_COLLECTION)
 	if err != nil {
 		log.Fatalf("Failed to initialize MongoDB: %v", err)
 	}
