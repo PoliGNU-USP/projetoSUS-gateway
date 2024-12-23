@@ -28,10 +28,10 @@ Você precisa ter o [Docker](https://www.docker.com) instalado em seu computador
 Defina o [seu .env](#adicione-em-um-arquivo-env-as-seguintes-informações) e deixe
 na pasta base do projeto (ao lado da main.go)
 
-No diretório **remote** use o comando:
+No diretório raiz use o comando:
 
 ```shell
-docker-compose up -d -build
+docker compose up -d --build
 ```
 
 Depois, vá no seu navegador e entre em **localhost:4040** e copie o link
