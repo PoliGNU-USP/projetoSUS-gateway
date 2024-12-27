@@ -43,9 +43,6 @@ func SendToBotkit(msg models.TwilioMessage) ([]string, error) {
 	}
 	defer resp.Body.Close()
 
-	// // Lendo os status
-	// log.Printf("Response status: %s", resp.Status)
-
 	reply, err = utils.Botkit_Parser(resp)
 	if err != nil {
 		return reply, err
