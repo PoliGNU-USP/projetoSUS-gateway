@@ -22,6 +22,10 @@ func HandlePost(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 	}
 
+	repositories.SaveUser(models.UserData{
+		Msg: twilio_message,
+	})
+
 	// Transformando a mensagem da twilio em uma mensagem para a Conversation
 	user_message := models.Message{
 		Sender:    twilio_message.AccountSid,
