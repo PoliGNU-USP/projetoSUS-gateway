@@ -25,6 +25,10 @@ func HandlePost(w http.ResponseWriter, r *http.Request) {
 	log.Println("A mensagem depois do parser é essa:")
 	log.Println(twilio_message)
 
+	repositories.SaveUser(models.UserData{
+		Msg: twilio_message,
+	})
+
 	// Transformando a mensagem da twilio em uma mensagem para a Conversation
 	user_message := models.Message{
 		Sender:    twilio_message.AccountSid,

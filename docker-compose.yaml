@@ -10,7 +10,10 @@ services:
     build:
       dockerfile: Dockerfile
     env_file:
-        - .env
+      - .env
+    depends_on:
+      - mongo
+      - postgres
 
   ngrok:
     image: ngrok/ngrok
@@ -45,3 +48,12 @@ services:
       - ME_CONFIG_MONGODB_ADMINPASSWORD=example
       - ME_CONFIG_MONGODB_URL=mongodb://root:example@mongo:27017/
       - ME_CONFIG_BASICAUTH=false
+
+  postgres:
+    image: postgres:alpine
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
